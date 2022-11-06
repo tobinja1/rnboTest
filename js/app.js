@@ -362,15 +362,23 @@ var canvas;
 var ctx;
 var x = 75;
 var y = 50;
-var WIDTH = 400;
-var HEIGHT = 300;
+var WIDTH = 400.;
+var HEIGHT = 400.;
+var circWH = 10.
 var dragok = false;
 
-function rect(x,y,w,h) {
+function rect(x,y,w,h,r) {
  ctx.beginPath();
- ctx.rect(x,y,w,h);
+ ctx.roundRect(x,y,w,h,r);
  ctx.closePath();
  ctx.fill();
+}
+
+function circ(x,y,r){
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, 2 * Math.PI)
+  ctx.closePath();
+  ctx.fill();
 }
 
 function clear() {
@@ -385,16 +393,23 @@ function init() {
 
 function draw() {
  clear();
+ //background
  ctx.fillStyle = "#FFFFFF";
  rect(0,0,WIDTH,HEIGHT);
- ctx.fillStyle = "#444444";
- rect(x - 15, y - 15, 30, 30);
+
+ //control rect
+ ctx.fillStyle = "#B4B4B4";
+ rect(x - 15, y - 15, 30, 30, 5);
+
+ // //control circ
+ // ctx.fillStyle = "#BABABA";
+ // circ(x-10, y-10, 20);
 
  const bpmP = device.parametersById.get("bpm");
- bpmP.value = x/200. * 200.;
+ bpmP.value = x/WIDTH * 200.;
 
  const depthP = device.parametersById.get("depth");
- depthP.value = y/100. * 160.;
+ depthP.value = y/HEIGHT * 160.;
 }
 
 function myMove(e){
@@ -407,7 +422,7 @@ function myMove(e){
 function myDown(e){
  if (e.pageX < x + 15 + canvas.offsetLeft && e.pageX > x - 15 +
  canvas.offsetLeft && e.pageY < y + 15 + canvas.offsetTop &&
- e.pageY > y -15 + canvas.offsetTop){
+ e.pageY > y - 15 + canvas.offsetTop){
   x = e.pageX - canvas.offsetLeft;
   y = e.pageY - canvas.offsetTop;
   dragok = true;

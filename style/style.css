@@ -63,3 +63,12 @@ h2, em {
 .p5:active {
   background-color: limegreen;
 }
+
+#myCanvas {
+  margin:auto;
+  display:block;
+}
+
+canvas {
+   display: inline;
+}
