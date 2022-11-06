@@ -1,7 +1,7 @@
     let device;
 
 async function setup() {
-    const patchExportURL = "export/groove.export.json";
+    const patchExportURL = "export/perc.export.json";
 
     // Create AudioContext
     const WAContext = window.AudioContext || window.webkitAudioContext;
@@ -84,8 +84,8 @@ async function setup() {
     await device.setDataBuffer(bufferId, audioBuf);
 
     //MESSING WITH PARAMETERS HERE
-    const dampP = device.parametersById.get("damp");
-    dampP.value = 1;
+    // const dampP = device.parametersById.get("damp");
+    // dampP.value = 1;
 
     // Connect the device to the web audio graph
     device.node.connect(outputNode);
@@ -390,11 +390,11 @@ function draw() {
  ctx.fillStyle = "#444444";
  rect(x - 15, y - 15, 30, 30);
 
- const volP = device.parametersById.get("vol");
- volP.value = x/200;
+ const bpmP = device.parametersById.get("bpm");
+ bpmP.value = x/200. * 400.;
 
- const rateP = device.parametersById.get("rate");
- rateP.value = 30/y;
+ const depthP = device.parametersById.get("depth");
+ depthP.value = y/100. * 160.;
 }
 
 function myMove(e){
