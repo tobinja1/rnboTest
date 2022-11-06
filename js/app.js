@@ -362,8 +362,8 @@ var canvas;
 var ctx;
 var x = 75;
 var y = 50;
-var WIDTH = 400.;
-var HEIGHT = 400.;
+var WIDTH = 300.;
+var HEIGHT = 300.;
 var circWH = 10.
 var dragok = false;
 
