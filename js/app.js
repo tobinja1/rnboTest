@@ -427,12 +427,14 @@ function myDown(e){
   y = e.pageY - canvas.offsetTop;
   dragok = true;
   canvas.onmousemove = myMove;
+  canvas.ontouchmove = myMove;
  }
 }
 
 function myUp(){
  dragok = false;
  canvas.onmousemove = null;
+ canvas.ontouchmove = null;
 }
 
 // init();
