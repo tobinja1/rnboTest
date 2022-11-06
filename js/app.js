@@ -1,7 +1,7 @@
     let device;
 
 async function setup() {
-    const patchExportURL = "export/perc.export.json";
+    const patchExportURL = "export/drummer.export.json";
 
     // Create AudioContext
     const WAContext = window.AudioContext || window.webkitAudioContext;
