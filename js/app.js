@@ -1,3 +1,5 @@
+    let device;
+
 async function setup() {
     const patchExportURL = "export/groove.export.json";
 
@@ -65,7 +67,8 @@ async function setup() {
     } catch (e) {}
 
     // Create the device
-    let device;
+
+
     try {
         device = await RNBO.createDevice({ context, patcher });
     } catch (err) {
@@ -92,6 +95,10 @@ async function setup() {
 
     // (Optional) Automatically create sliders for the device parameters
     makeSliders(device);
+
+    init();
+    canvas.onmousedown = myDown;
+    canvas.onmouseup = myUp;
 
     // (Optional) Create a form to send messages to RNBO inputs
     //makeInportForm(device);
@@ -382,6 +389,12 @@ function draw() {
  rect(0,0,WIDTH,HEIGHT);
  ctx.fillStyle = "#444444";
  rect(x - 15, y - 15, 30, 30);
+
+ const volP = device.parametersById.get("vol");
+ volP.value = x/200;
+
+ const rateP = device.parametersById.get("rate");
+ rateP.value = 30/y;
 }
 
 function myMove(e){
@@ -407,9 +420,9 @@ function myUp(){
  canvas.onmousemove = null;
 }
 
-init();
-canvas.onmousedown = myDown;
-canvas.onmouseup = myUp;
+// init();
+// canvas.onmousedown = myDown;
+// canvas.onmouseup = myUp;
 setup();
 
 
