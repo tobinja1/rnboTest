@@ -391,7 +391,7 @@ function draw() {
  rect(x - 15, y - 15, 30, 30);
 
  const bpmP = device.parametersById.get("bpm");
- bpmP.value = x/200. * 400.;
+ bpmP.value = x/200. * 200.;
 
  const depthP = device.parametersById.get("depth");
  depthP.value = y/100. * 160.;
