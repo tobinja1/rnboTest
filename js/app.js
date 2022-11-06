@@ -405,8 +405,14 @@ function draw() {
  // ctx.fillStyle = "#BABABA";
  // circ(x-10, y-10, 20);
 
- const bpmP = device.parametersById.get("bpm");
- bpmP.value = x/WIDTH * 200.;
+ // const bpmP = device.parametersById.get("bpm");
+ // bpmP.value = x/WIDTH * 200.;
+
+ const decayKP = device.parametersById.get("kickDecay");
+ decayKP.value = x/HEIGHT * 500.;
+
+ const decaySP = device.parametersById.get("snareDecay");
+ decaySP.value = x/HEIGHT * 500.;
 
  const depthP = device.parametersById.get("depth");
  depthP.value = y/HEIGHT * 160.;
