@@ -91,7 +91,7 @@ async function setup() {
     //document.getElementById("patcher-title").innerText = (patcher.desc.meta.filename || "Unnamed Patcher") + " (v" + patcher.desc.meta.rnboversion + ")";
 
     // (Optional) Automatically create sliders for the device parameters
-    //makeSliders(device);
+    makeSliders(device);
 
     // (Optional) Create a form to send messages to RNBO inputs
     //makeInportForm(device);
