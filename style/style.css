@@ -2,6 +2,20 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: Arial;
+}
+
+h1 {
+  font-size: 50px !important;
+  font-weight: bold !important;
+}
+
+h3 {
+  font-size: 22px !important;
+}
+
 #rnbo-root {
     height: 100vh;
     width: 100vw;
@@ -65,7 +79,10 @@ h2, em {
 }
 
 #myCanvas {
-  margin:auto;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
   display:block;
 }
 

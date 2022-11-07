@@ -1,7 +1,8 @@
     let device;
 
+
 async function setup() {
-    const patchExportURL = "export/drummer.export.json";
+    const drummerExportURL = "export/drummer.export.json";
 
     // Create AudioContext
     const WAContext = window.AudioContext || window.webkitAudioContext;
@@ -27,7 +28,7 @@ async function setup() {
     // Fetch the exported patcher
     let response, patcher;
     try {
-        response = await fetch(patchExportURL);
+        response = await fetch(drummerExportURL);
         patcher = await response.json();
 
         if (!window.RNBO) {
@@ -44,9 +45,9 @@ async function setup() {
         if (response && (response.status >= 300 || response.status < 200)) {
             errorContext.header = `Couldn't load patcher export bundle`,
             errorContext.description = `Check app.js to see what file it's trying to load. Currently it's` +
-            ` trying to load "${patchExportURL}". If that doesn't` +
+            ` trying to load "${drummerExportURL}". If that doesn't` +
             ` match the name of the file you exported from RNBO, modify` +
-            ` patchExportURL in app.js.`;
+            ` drummerExportURL in app.js.`;
         }
         if (typeof guardrails === "function") {
             guardrails(errorContext);
@@ -56,21 +57,21 @@ async function setup() {
         return;
     }
 
-    // (Optional) Fetch the dependencies
-    let dependencies = [];
-    try {
-        const dependenciesResponse = await fetch("export/dependencies.json");
-        dependencies = await dependenciesResponse.json();
-
-        // Prepend "export" to any file dependenciies
-        dependencies = dependencies.map(d => d.file ? Object.assign({}, d, { file: "export/" + d.file }) : d);
-    } catch (e) {}
+    // // (Optional) Fetch the dependencies
+    // let dependencies = [];
+    // try {
+    //     const dependenciesResponse = await fetch("export/dependencies.json");
+    //     dependencies = await dependenciesResponse.json();
+    //
+    //     // Prepend "export" to any file dependenciies
+    //     dependencies = dependencies.map(d => d.file ? Object.assign({}, d, { file: "export/" + d.file }) : d);
+    // } catch (e) {}
 
     // Create the device
 
 
     try {
-        device = await RNBO.createDevice({ context, patcher });
+        drummer = await RNBO.createDevice({ context, patcher });
     } catch (err) {
         if (typeof guardrails === "function") {
             guardrails({ error: err });
@@ -81,20 +82,20 @@ async function setup() {
     }
 
         // Set the DataBuffer on the device
-    await device.setDataBuffer(bufferId, audioBuf);
+    await drummer.setDataBuffer(bufferId, audioBuf);
 
     //MESSING WITH PARAMETERS HERE
     // const dampP = device.parametersById.get("damp");
     // dampP.value = 1;
 
     // Connect the device to the web audio graph
-    device.node.connect(outputNode);
+    drummer.node.connect(outputNode);
 
     // (Optional) Extract the name and rnbo version of the patcher from the description
     //document.getElementById("patcher-title").innerText = (patcher.desc.meta.filename || "Unnamed Patcher") + " (v" + patcher.desc.meta.rnboversion + ")";
 
     // (Optional) Automatically create sliders for the device parameters
-    makeSliders(device);
+    makeSliders(drummer);
 
     init();
     canvas.onmousedown = myDown;
@@ -408,13 +409,13 @@ function draw() {
  // const bpmP = device.parametersById.get("bpm");
  // bpmP.value = x/WIDTH * 200.;
 
- const decayKP = device.parametersById.get("kickDecay");
+ const decayKP = drummer.parametersById.get("kickDecay");
  decayKP.value = x/HEIGHT * 500.;
 
- const decaySP = device.parametersById.get("snareDecay");
+ const decaySP = drummer.parametersById.get("snareDecay");
  decaySP.value = x/HEIGHT * 500.;
 
- const depthP = device.parametersById.get("depth");
+ const depthP = drummer.parametersById.get("depth");
  depthP.value = y/HEIGHT * 160.;
 }
 
@@ -446,6 +447,10 @@ function myUp(){
 // init();
 // canvas.onmousedown = myDown;
 // canvas.onmouseup = myUp;
+// $('.dropdown-menu').click(function() {
+//   console.log( $(this).text() );
+// });
+
 setup();
 
 

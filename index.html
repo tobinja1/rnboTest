@@ -14,17 +14,17 @@
     <svg id="background" width="100%" height="100%"></svg>
     <div id="rnbo-root">
 		<div>
-			<h1 id="patcher-title">Stinky patch</h1>
+			<h1>Stinky patch</h1>
 		</div>
         <div id="hed2">
             <h2>click and drag the rectangle</h2>
         </div>
 
-        <div id="hed3">
+        <div id="hed3" style="color:gray;">
             <h3>(give it a sec to warm up!)</h3>
         </div>
 
-        <div id="hed3-2">
+        <div id="hed3-2" style="color:gray;">
             <h3>(if you're on mobile: turn your volume toggle ON, tap the big rectangle, and use the sliders at the bottom. sry i'm working on getting this to behave!!)</h3>
         </div>
 
@@ -34,10 +34,23 @@
             </canvas>
         </div>
 
+        <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              don't mind me
+            </button>
+            <div class="dropdown-menu" id="dropdown-menu">
+              <a class="dropdown-item" href="#">we</a>
+              <a class="dropdown-item" href="#">like</a>
+              <a class="dropdown-item" href="#">fortnite</a>
+            </div>
+          </div>
+
           <div id="rnbo-parameter-sliders">
                     <h2>Parameters</h2>
                     <em id="no-param-label">No parameters</em>
                 </div>
+
+
 
     </div>
 
@@ -47,14 +60,26 @@
 
     <!-- (Optional) The guardrails.js script isn't required for RNBO to work, and you can skip including it -->
     <!-- It simply offers some helpful error messages for common problems -->
-    <script type="text/javascript" src="js/guardrails.js"></script>
 
-    //createjs
-    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+
+    <script type="text/javascript" src="js/guardrails.js"></script>
 
     <!-- Import RNBO Engine Wrapper -->
     <!-- Make sure to include the RNBO engine version to the version of your exported code, found in rnbopackage.json -->
     <script type="text/javascript" src="js/app.js"></script>
+
+    <!-- BOOTSTRAP OVERHEAD -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
